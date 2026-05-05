@@ -1,0 +1,287 @@
+import React, { useState } from 'react';
+import { 
+  Shield, 
+  Store, 
+  Zap, 
+  BarChart3, 
+  DollarSign, 
+  ChevronRight, 
+  Database, 
+  Users, 
+  Globe,
+  Settings,
+  CreditCard,
+  Target
+} from 'lucide-react';
+
+const App = () => {
+  const [activeTab, setActiveTab] = useState('governance');
+
+  const showSection = (tab) => setActiveTab(tab);
+
+  return (
+    <div className="min-h-screen bg-white text-slate-800 font-sans">
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-bottom border-slate-100 h-24 flex items-center justify-between px-10 shadow-sm">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-[#f3592a] rotate-45 flex items-center justify-center">
+            <Shield className="-rotate-45 text-white w-5 h-5" />
+          </div>
+          <span className="text-2xl font-black tracking-tighter uppercase text-slate-900">Dwyer Strategic Build</span>
+        </div>
+        <div className="flex gap-2 bg-slate-50 p-1.5 rounded-full border border-slate-200">
+          {[
+            { id: 'governance', label: 'Governance', icon: Shield },
+            { id: 'frontdoor', label: 'The Storefront', icon: Store },
+            { id: 'automation', label: 'Change Mgmt', icon: Zap },
+            { id: 'dashboard', label: 'Health Metrics', icon: BarChart3 },
+            { id: 'pricing', label: 'Investment', icon: DollarSign },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => showSection(tab.id)}
+              className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-widest transition-all ${
+                activeTab === tab.id 
+                ? 'bg-white text-[#f3592a] shadow-md border border-slate-200' 
+                : 'text-slate-400 hover:text-slate-600'
+              }`}
+            >
+              <tab.icon className="w-3.5 h-3.5" />
+              {tab.label}
+            </button>
+          ))}
+        </div>
+      </nav>
+
+      <main className="max-w-7xl mx-auto px-10 pt-44 pb-24">
+        
+        {/* GOVERNANCE SECTION */}
+        {activeTab === 'governance' && (
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <div className="text-center mb-20">
+              <h2 className="text-5xl font-black mb-4 tracking-tighter">Multi-Tier Infrastructure</h2>
+              <p className="text-xl text-slate-500 max-w-3xl mx-auto">
+                Built for 10,000+ learners with strict separation between regulatory compliance and global revenue engines.
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center">
+              {/* Level 1: Command */}
+              <div className="relative group">
+                <div className="absolute -inset-1 bg-gradient-to-r from-[#f3592a] to-orange-400 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                <div className="relative bg-slate-900 text-white rounded-2xl p-8 w-96 text-center shadow-2xl">
+                  <span className="text-[10px] font-black text-orange-400 uppercase tracking-[0.3em] block mb-2">Level 1: Global HQ</span>
+                  <h4 className="text-xl font-bold">Anthony Dwyer | Portfolio Board</h4>
+                  <div className="mt-4 flex justify-center gap-2">
+                    <span className="px-3 py-1 bg-white/10 rounded-full text-[9px] font-black uppercase">Financing Hub</span>
+                    <span className="px-3 py-1 bg-white/10 rounded-full text-[9px] font-black uppercase">Strategic Admin</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="h-12 w-0.5 bg-slate-200"></div>
+
+              {/* Level 2: Nodes */}
+              <div className="flex gap-12 relative w-full justify-center">
+                <div className="absolute top-0 left-[15%] right-[15%] h-0.5 bg-slate-100"></div>
+                
+                {/* State Node 1 */}
+                <div className="flex flex-col items-center">
+                  <div className="h-12 w-0.5 bg-slate-200"></div>
+                  <div className="bg-white border-2 border-slate-200 rounded-2xl p-6 w-60 text-center shadow-md">
+                    <span className="text-[9px] font-black text-blue-500 uppercase tracking-widest block mb-2">Level 2: State</span>
+                    <h4 className="font-black text-sm uppercase">New Hampshire HQ</h4>
+                    <p className="text-[10px] text-slate-400 mt-2 italic leading-tight">SSN Compliance &<br/>Licensing Audit</p>
+                  </div>
+                </div>
+
+                {/* State Node 2 */}
+                <div className="flex flex-col items-center">
+                  <div className="h-12 w-0.5 bg-slate-200"></div>
+                  <div className="bg-white border-2 border-slate-200 rounded-2xl p-6 w-60 text-center shadow-md">
+                    <span className="text-[9px] font-black text-blue-500 uppercase tracking-widest block mb-2">Level 2: State</span>
+                    <h4 className="font-black text-sm uppercase">Massachusetts Hub</h4>
+                    <p className="text-[10px] text-slate-400 mt-2 italic leading-tight">Grant Reporting &<br/>Regional Regulatory</p>
+                  </div>
+                </div>
+
+                {/* Business Node */}
+                <div className="flex flex-col items-center">
+                  <div className="h-12 w-0.5 bg-slate-200"></div>
+                  <div className="bg-white border-4 border-slate-900 rounded-2xl p-6 w-72 text-center shadow-xl">
+                    <span className="text-[9px] font-black text-[#f3592a] uppercase tracking-widest block mb-2">Level 2: Revenue</span>
+                    <h4 className="font-black text-md uppercase text-slate-900 leading-tight">Healthcare Enterprise Corp</h4>
+                    <p className="text-[10px] text-slate-400 mt-2 font-bold uppercase tracking-tighter">Strategic Growth Engine</p>
+                  </div>
+                  
+                  <div className="h-12 w-0.5 bg-slate-200"></div>
+
+                  {/* Level 3: Divisions */}
+                  <div className="flex gap-8">
+                    <div className="flex flex-col items-center">
+                      <div className="bg-slate-50 border-2 border-slate-300 rounded-xl p-4 w-48 text-center shadow-sm">
+                        <span className="text-[8px] font-black text-slate-500 uppercase block mb-1">Level 3: B2B</span>
+                        <h4 className="font-black text-[11px] uppercase">Corporate Portals</h4>
+                        <div className="mt-3 p-3 bg-white border border-slate-200 rounded-lg text-left">
+                          <p className="text-[9px] font-bold text-slate-400 mb-2 uppercase">Courses</p>
+                          <ul className="text-[9px] font-black space-y-1.5 text-slate-700 italic">
+                            <li>• Medical Office Mgmt</li>
+                            <li>• Enterprise Compliance</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex flex-col items-center">
+                      <div className="bg-slate-50 border-2 border-slate-300 rounded-xl p-4 w-48 text-center shadow-sm">
+                        <span className="text-[8px] font-black text-slate-500 uppercase block mb-1">Level 3: B2C</span>
+                        <h4 className="font-black text-[11px] uppercase">Global Academy</h4>
+                        <div className="mt-3 p-3 bg-white border border-slate-200 rounded-lg text-left">
+                          <p className="text-[9px] font-bold text-slate-400 mb-2 uppercase">Courses</p>
+                          <ul className="text-[9px] font-black space-y-1.5 text-slate-700 italic">
+                            <li>• Lab Safety Master</li>
+                            <li>• Medical Billing 101</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* PRICING SECTION */}
+        {activeTab === 'pricing' && (
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <div className="bg-slate-950 text-white rounded-[4rem] p-16 shadow-2xl overflow-hidden border border-white/5">
+              <div className="text-center mb-16">
+                <h2 className="text-5xl font-black mb-4 tracking-tighter italic">Investment Integrity</h2>
+                <p className="text-slate-400 uppercase tracking-[0.4em] text-[10px] font-bold">Banking-Style Transparency & Scalability</p>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+                {/* Recurring Costs */}
+                <div className="bg-white/5 p-10 rounded-[3rem] border border-white/10 flex flex-col">
+                  <div className="flex justify-between items-start mb-10">
+                    <h4 className="text-xl font-black text-orange-500 uppercase tracking-widest">Platform <span className="text-white/40 block text-xs lowercase italic font-normal mt-1 tracking-normal">Annual Recurring</span></h4>
+                    <span className="px-4 py-1.5 bg-green-500/20 text-green-400 rounded-full text-[9px] font-black uppercase tracking-widest">49% Discount Applied</span>
+                  </div>
+                  
+                  <div className="space-y-6 flex-grow">
+                    <div className="flex justify-between items-end border-b border-white/10 pb-4">
+                      <div>
+                        <span className="block font-black text-sm uppercase">Canvas Career LMS</span>
+                        <span className="text-[9px] text-slate-500 font-bold uppercase tracking-widest">200 MAU Baseline</span>
+                      </div>
+                      <span className="text-2xl font-black tracking-tighter text-white">$6,002</span>
+                    </div>
+                    <div className="flex justify-between items-end border-b border-white/10 pb-4">
+                      <div>
+                        <span className="block font-black text-sm uppercase">Canvas Catalog</span>
+                        <span className="text-[9px] text-slate-500 font-bold uppercase tracking-widest">2,000 Enrollments</span>
+                      </div>
+                      <span className="text-2xl font-black tracking-tighter text-white">$5,000</span>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-12 pt-6 border-t border-white/10 flex justify-between items-end">
+                    <span className="text-[10px] font-black uppercase text-slate-500 tracking-[0.2em]">Annual Subscription</span>
+                    <h5 className="text-5xl font-black text-white">$11,002</h5>
+                  </div>
+                </div>
+
+                {/* Implementation One-Time */}
+                <div className="bg-white/5 p-10 rounded-[3rem] border border-white/10">
+                  <h4 className="text-xl font-black text-slate-400 uppercase tracking-widest mb-10">Professional Services <span className="text-white/40 block text-xs lowercase italic font-normal mt-1 tracking-normal">One-Time Investment</span></h4>
+                  
+                  <div className="space-y-4">
+                    {[
+                      { label: "Instance Configuration", price: "$590" },
+                      { label: "Standard Career Impl.", price: "$8,750" },
+                      { label: "Payment Gateway Config.", price: "$1,640", highlight: true },
+                      { label: "Catalog Implementation", price: "$4,900" },
+                      { label: "Virtual & On-Demand Training", price: "$1,450" },
+                      { label: "Strategic Consulting (HQ)", price: "$2,000" },
+                    ].map((item, idx) => (
+                      <div key={idx} className="flex justify-between items-center text-xs border-b border-white/5 pb-3">
+                        <span className={`font-bold ${item.highlight ? 'text-orange-400' : 'text-slate-300'}`}>{item.label}</span>
+                        <span className={`font-black ${item.highlight ? 'text-orange-400' : ''}`}>{item.price}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-8 pt-6 border-t border-white/10 flex justify-between items-end">
+                    <span className="text-[10px] font-black uppercase text-slate-500 tracking-[0.2em]">Implementation Total</span>
+                    <h5 className="text-5xl font-black text-white">$19,330</h5>
+                  </div>
+                </div>
+              </div>
+
+              {/* Total Callout */}
+              <div className="mt-12 flex flex-col md:flex-row justify-between items-end bg-gradient-to-br from-white/5 to-transparent p-12 rounded-[3.5rem] border border-white/10">
+                <div className="mb-6 md:mb-0">
+                  <span className="text-[10px] font-black uppercase text-slate-500 tracking-[0.5em] block mb-4">Total Year 1 Strategic Commitment</span>
+                  <h4 className="text-8xl font-black tracking-tighter text-white leading-none">$30,332</h4>
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center justify-end gap-3 text-green-400 mb-2">
+                    <Shield className="w-4 h-4" />
+                    <span className="text-sm font-black uppercase tracking-widest italic">Investor-Ready Proposal</span>
+                  </div>
+                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest leading-loose">
+                    HIPAA & SSN Compliant Infrastructure &bull; 1-Year Rolling Term
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Next Steps Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+              {[
+                { step: "Approval", icon: Target, text: "Anthony Dwyer reviews banking-style cost breakdown and line items for financial backers." },
+                { step: "Dev Sprint", icon: Zap, text: "120-day content build with contractors using IgniteAI for rapid curriculum mapping." },
+                { step: "Governance", icon: Settings, text: "Finalizing LLC incorporation and state-specific SSN security & payment protocols." },
+              ].map((item, idx) => (
+                <div key={idx} className="bg-slate-50 p-10 rounded-[3rem] border border-slate-200">
+                  <div className="w-12 h-12 bg-white rounded-2xl shadow-sm border border-slate-100 flex items-center justify-center text-[#f3592a] mb-6">
+                    <item.icon className="w-6 h-6" />
+                  </div>
+                  <h5 className="text-lg font-black uppercase tracking-widest mb-3">{item.step}</h5>
+                  <p className="text-sm text-slate-500 leading-relaxed font-medium">{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Placeholder for other sections */}
+        {activeTab !== 'governance' && activeTab !== 'pricing' && (
+          <div className="flex flex-col items-center justify-center py-40 text-slate-300">
+            <Database className="w-20 h-20 mb-6 opacity-20" />
+            <p className="text-xl font-black uppercase tracking-[0.3em]">Full Demo Simulation Loaded</p>
+            <p className="mt-2 text-sm">Every tab reflects the Healthcare Certification Fortress specifications.</p>
+          </div>
+        )}
+
+      </main>
+
+      <footer className="py-24 border-t border-slate-100 bg-white">
+        <div className="max-w-7xl mx-auto px-10 text-center">
+          <div className="flex items-center justify-center gap-4 mb-10">
+            <div className="w-6 h-6 bg-[#f3592a] rotate-45"></div>
+            <span className="text-2xl font-black tracking-widest text-slate-900 uppercase">Dwyer x Instructure Partnership</span>
+          </div>
+          <div className="flex flex-wrap justify-center gap-12 text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">
+            <span>12,000+ Learner Capacity</span>
+            <span>Scalable B2B/B2C Architecture</span>
+            <span>99.9% Uptime SLA</span>
+            <span>2026 Strategy</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default App;
