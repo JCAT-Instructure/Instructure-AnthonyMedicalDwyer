@@ -3,97 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dwyer Strategic Portal</title>
+    <title>Dwyer Strategic Build</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        .animate-in { animation: fadeIn 0.5s ease-out forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-in { animation: fadeIn 0.8s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
-<body class="bg-slate-50">
+<body class="bg-slate-50 antialiased">
     <div id="root"></div>
 
-    <script type="text/babel">
-        // Safety: Wait for Lucide to be ready
-        const init = () => {
-            const { useState } = React;
-            
-            // We use lucide.icons to safely get the components
-            const Icon = ({ name, ...props }) => {
-                const LucideIcon = lucide.icons[name];
-                return LucideIcon ? <LucideIcon {...props} /> : null;
-            };
+    <script type="text/babel" data-presets="react,stage-2">
+        const { useState, useEffect } = React;
 
-            const App = () => {
-                const [activeTab, setActiveTab] = useState('governance');
-
-                const tabs = [
-                    { id: 'governance', label: 'Governance', icon: 'Shield' },
-                    { id: 'frontdoor', label: 'Storefront', icon: 'Store' },
-                    { id: 'automation', label: 'Change Mgmt', icon: 'Zap' },
-                    { id: 'dashboard', label: 'Insights', icon: 'BarChart3' },
-                    { id: 'pricing', label: 'Investment', icon: 'DollarSign' }
-                ];
-
-                return (
-                    <div className="min-h-screen">
-                        <nav className="fixed top-0 w-full z-50 bg-white/95 border-b border-slate-200 h-24 flex items-center justify-between px-10 shadow-sm">
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 bg-[#f3592a] rotate-45 flex items-center justify-center shadow-lg">
-                                    <Icon name="Shield" className="-rotate-45 text-white w-5 h-5" />
-                                </div>
-                                <div className="flex flex-col uppercase font-black tracking-tighter">
-                                    <span className="text-xl">Dwyer Strategic</span>
-                                    <span className="text-[8px] text-slate-400 tracking-[0.3em]">Healthcare Fortress</span>
-                                </div>
-                            </div>
-                            
-                            <div className="flex gap-2 bg-slate-100 p-1 rounded-full border">
-                                {tabs.map((tab) => (
-                                    <button
-                                        key={tab.id}
-                                        onClick={() => setActiveTab(tab.id)}
-                                        className={`flex items-center gap-2 px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all ${
-                                            activeTab === tab.id ? 'bg-white text-[#f3592a] shadow-md' : 'text-slate-400'
-                                        }`}
-                                    >
-                                        <Icon name={tab.icon} className="w-3.5 h-3.5" />
-                                        {tab.label}
-                                    </button>
-                                ))}
-                            </div>
-                        </nav>
-
-                        <main className="pt-48 px-10 max-w-6xl mx-auto text-center">
-                            {activeTab === 'governance' ? (
-                                <div className="animate-in">
-                                    <h1 className="text-6xl font-black mb-6 tracking-tighter text-slate-900">The Mothership Architecture</h1>
-                                    <p className="text-xl text-slate-500 mb-12 italic">3-Tier Strategic Ecosystem</p>
-                                    <div className="bg-slate-900 text-white p-16 rounded-[3rem] shadow-2xl inline-block w-full max-w-xl">
-                                        <h3 className="text-3xl font-black">Anthony Dwyer | Portfolio Board</h3>
-                                        <div className="mt-6 h-1 w-20 bg-orange-500 mx-auto"></div>
-                                    </div>
-                                </div>
-                            ) : (
-                                <div className="p-20 border-4 border-dashed border-slate-200 rounded-[4rem] text-slate-300 font-black uppercase tracking-widest text-3xl italic">
-                                    {activeTab} Module Active
-                                </div>
-                            )}
-                        </main>
-                    </div>
-                );
-            };
-
-            const root = ReactDOM.createRoot(document.getElementById('root'));
-            root.render(<App />);
+        // Custom Icon wrapper to prevent "lucide is not defined" errors
+        const Icon = ({ name, className }) => {
+            const [ready, setReady] = useState(false);
+            useEffect(() => { setReady(true); }, []);
+            if (!ready || !window.lucide || !window.lucide.icons) return <div className={className} />;
+            const LucideIcon = window.lucide.icons[name];
+            return LucideIcon ? <LucideIcon className={className} /> : null;
         };
 
-        // Delay execution slightly to ensure all CDNs are parsed
-        setTimeout(init, 100);
+        const App = () => {
+            const [activeTab, setActiveTab] = useState('governance');
+
+            const menu = [
+                { id: 'governance', label: 'Governance', icon: 'Shield' },
+                { id: 'frontdoor', label: 'Storefront', icon: 'Store' },
+                { id: 'automation', label: 'Change Mgmt', icon: 'Zap' },
+                { id: 'dashboard', label: 'Insights', icon: 'BarChart3' },
+                { id: 'pricing', label: 'Investment', icon: 'DollarSign' }
+            ];
+
+            return (
+                <div className="min-h-screen">
+                    {/* Header */}
+                    <nav className="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 h-24 flex items-center justify-between px-10">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-[#f3592a] rotate-45 flex items-center justify-center shadow-lg shadow-orange-200">
+                                <Icon name="Shield" className="-rotate-45 text-white w-5 h-5" />
+                            </div>
+                            <div className="flex flex-col">
+                                <span className="text-xl font-black uppercase text-slate-900 leading-none tracking-tighter">Dwyer Strategic</span>
+                                <span className="text-[8px] font-bold text-slate-400 uppercase tracking-[0.3em] mt-1">Healthcare Certification Fortress</span>
+                            </div>
+                        </div>
+                        
+                        <div className="flex gap-2 bg-slate-100 p-1 rounded-full border border-slate-200">
+                            {menu.map((tab) => (
+                                <button
+                                    key={tab.id}
+                                    onClick={() => setActiveTab(tab.id)}
+                                    className={`flex items-center gap-2 px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${
+                                        activeTab === tab.id ? 'bg-white text-[#f3592a] shadow-md border border-slate-200' : 'text-slate-400 hover:text-slate-600'
+                                    }`}
+                                >
+                                    <Icon name={tab.icon} className="w-3.5 h-3.5" />
+                                    {tab.label}
+                                </button>
+                            ))}
+                        </div>
+                    </nav>
+
+                    {/* Content */}
+                    <main className="max-w-7xl mx-auto px-10 pt-44 pb-32">
+                        {activeTab === 'governance' && (
+                            <div className="animate-in text-center">
+                                <h1 className="text-6xl font-black mb-4 tracking-tighter">The Mothership Architecture</h1>
+                                <p className="text-xl text-slate-500 mb-20 italic">Three-tier ecosystem for regulatory compliance.</p>
+                                
+                                <div className="inline-block relative group">
+                                    <div className="absolute -inset-1 bg-gradient-to-r from-[#f3592a] to-orange-500 rounded-3xl blur opacity-25"></div>
+                                    <div className="relative bg-slate-900 text-white rounded-2xl p-12 w-[500px] shadow-2xl border border-white/10">
+                                        <span className="text-[10px] font-black text-orange-400 uppercase tracking-[0.4em] block mb-4">Level 1: Central Command</span>
+                                        <h4 className="text-3xl font-black tracking-tight">Anthony Dwyer</h4>
+                                        <p className="mt-4 text-slate-400 uppercase text-[10px] font-bold tracking-widest">Portfolio Board & Financing Hub</p>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {activeTab !== 'governance' && (
+                            <div className="animate-in flex flex-col items-center justify-center py-40 bg-white rounded-[4rem] border-4 border-dashed border-slate-100">
+                                <Icon name={menu.find(t => t.id === activeTab).icon} className="w-16 h-16 text-slate-200 mb-6" />
+                                <h3 className="text-3xl font-black text-slate-300 uppercase tracking-widest italic">{activeTab} Details Encrypted</h3>
+                                <p className="text-slate-400 mt-2 font-medium">Strategic infrastructure verified for 2026 deployment.</p>
+                            </div>
+                        )}
+                    </main>
+
+                    <footer className="py-20 border-t border-slate-200 bg-white text-center">
+                        <div className="flex items-center justify-center gap-4 mb-8">
+                            <div className="w-6 h-6 bg-slate-900 rotate-45 flex items-center justify-center"><Icon name="Shield" className="text-white w-3 h-3 -rotate-45" /></div>
+                            <span className="text-xl font-black tracking-widest uppercase italic">Dwyer x Instructure</span>
+                        </div>
+                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.5em]">HIPAA Compliant • 12,000+ Learner Capacity</p>
+                    </footer>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
     </script>
 </body>
 </html>
