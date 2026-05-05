@@ -3,56 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dwyer Strategic Build</title>
+    <title>Dwyer Strategic Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-in { animation: fadeIn 0.7s ease-out forwards; }
+    </style>
 </head>
-<body class="bg-slate-50">
+<body>
     <div id="root"></div>
 
     <script type="text/babel">
-        // 2. Map Lucide icons for browser use
+        // BROWSER FIX: We extract the tools from the global window instead of "importing"
+        const { useState } = React;
         const { 
             Shield, Store, Zap, BarChart3, DollarSign, ChevronRight, 
             Database, Users, Globe, Settings, CreditCard, Target, 
             ArrowRight, CheckCircle2, RefreshCcw, Activity, Lock 
         } = lucide;
-        const { useState } = React;
 
-        // 3. YOUR UPDATED CODE STARTS HERE
         const App = () => {
             const [activeTab, setActiveTab] = useState('governance');
 
             return (
-                <div className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-orange-100 selection:text-orange-900">
-                    {/* (I'm shortening the middle for brevity, but keep your full code here) */}
+                <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
                     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 h-24 flex items-center justify-between px-10 shadow-sm">
                         <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-[#f3592a] rotate-45 flex items-center justify-center shadow-lg shadow-orange-200">
+                            <div className="w-10 h-10 bg-[#f3592a] rotate-45 flex items-center justify-center shadow-lg">
                                 <Shield className="-rotate-45 text-white w-5 h-5" />
                             </div>
                             <div className="flex flex-col">
-                                <span className="text-xl font-black tracking-tighter uppercase text-slate-900 leading-none">Dwyer Strategic Build</span>
-                                <span className="text-[9px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-1">Healthcare Certification Fortress</span>
+                                <span className="text-xl font-black uppercase text-slate-900 leading-none">Dwyer Strategic Build</span>
+                                <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-1">Healthcare Certification Fortress</span>
                             </div>
                         </div>
-                        {/* ... Rest of your Navigation and Main sections ... */}
-                    </nav>
-                    <main className="max-w-7xl mx-auto px-10 pt-44 pb-32">
-                        {/* PASTE YOUR TAB LOGIC AND ALL JSX SECTIONS HERE */}
-                        <div className="text-center mt-20">
-                            <h2 className="text-5xl font-black mb-4 tracking-tighter">The Mothership Architecture</h2>
-                            <p className="text-xl text-slate-500 max-w-3xl mx-auto">Active Tab: {activeTab}</p>
+                        
+                        <div className="flex gap-1 bg-slate-100 p-1 rounded-full border border-slate-200">
+                            {['governance', 'frontdoor', 'automation', 'dashboard', 'pricing'].map((id) => (
+                                <button
+                                    key={id}
+                                    onClick={() => setActiveTab(id)}
+                                    className={`px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${
+                                        activeTab === id ? 'bg-white text-[#f3592a] shadow-sm' : 'text-slate-400 hover:text-slate-600'
+                                    }`}
+                                >
+                                    {id}
+                                </button>
+                            ))}
                         </div>
+                    </nav>
+
+                    <main className="max-w-7xl mx-auto px-10 pt-44 pb-32">
+                        {activeTab === 'governance' && (
+                            <div className="animate-in text-center">
+                                <h2 className="text-5xl font-black mb-4 tracking-tighter text-slate-900">The Mothership Architecture</h2>
+                                <p className="text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed mb-12">
+                                    A structured three-tier ecosystem separating regulatory state compliance from global revenue streams.
+                                </p>
+                                <div className="flex justify-center">
+                                    <div className="bg-slate-900 text-white p-10 rounded-2xl shadow-2xl w-full max-w-md">
+                                        <span className="text-orange-400 font-black uppercase text-[10px] tracking-widest block mb-2">Level 1: Central Command</span>
+                                        <h3 className="text-2xl font-bold">Anthony Dwyer | Portfolio Board</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                        
+                        {activeTab !== 'governance' && (
+                            <div className="text-center py-20 bg-white rounded-3xl border-2 border-dashed border-slate-200">
+                                <h3 className="text-2xl font-black text-slate-400 uppercase tracking-widest">Section: {activeTab}</h3>
+                                <p className="text-slate-400 italic">Ready for full content injection</p>
+                            </div>
+                        )}
                     </main>
                 </div>
             );
         };
 
-        // 4. Render the App into the root div
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>
