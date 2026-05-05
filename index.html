@@ -11,38 +11,51 @@ import {
   Globe,
   Settings,
   CreditCard,
-  Target
+  Target,
+  ArrowRight,
+  CheckCircle2,
+  RefreshCcw,
+  Activity,
+  Lock
 } from 'lucide-react';
+
+/**
+ * DWYER STRATEGIC INFRASTRUCTURE PORTAL
+ * Designed for: Anthony Dwyer & Financial Backers
+ * Purpose: A high-fidelity roadmap for building a scalable medical certification fortress.
+ */
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('governance');
 
-  const showSection = (tab) => setActiveTab(tab);
-
   return (
-    <div className="min-h-screen bg-white text-slate-800 font-sans">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-bottom border-slate-100 h-24 flex items-center justify-between px-10 shadow-sm">
+    <div className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-orange-100 selection:text-orange-900">
+      {/* Executive Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 h-24 flex items-center justify-between px-10 shadow-sm">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-[#f3592a] rotate-45 flex items-center justify-center">
+          <div className="w-10 h-10 bg-[#f3592a] rotate-45 flex items-center justify-center shadow-lg shadow-orange-200">
             <Shield className="-rotate-45 text-white w-5 h-5" />
           </div>
-          <span className="text-2xl font-black tracking-tighter uppercase text-slate-900">Dwyer Strategic Build</span>
+          <div className="flex flex-col">
+            <span className="text-xl font-black tracking-tighter uppercase text-slate-900 leading-none">Dwyer Strategic Build</span>
+            <span className="text-[9px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-1">Healthcare Certification Fortress</span>
+          </div>
         </div>
-        <div className="flex gap-2 bg-slate-50 p-1.5 rounded-full border border-slate-200">
+        
+        <div className="flex gap-1 bg-slate-100 p-1 rounded-full border border-slate-200">
           {[
             { id: 'governance', label: 'Governance', icon: Shield },
-            { id: 'frontdoor', label: 'The Storefront', icon: Store },
+            { id: 'frontdoor', label: 'Storefront', icon: Store },
             { id: 'automation', label: 'Change Mgmt', icon: Zap },
-            { id: 'dashboard', label: 'Health Metrics', icon: BarChart3 },
+            { id: 'dashboard', label: 'Insights', icon: BarChart3 },
             { id: 'pricing', label: 'Investment', icon: DollarSign },
           ].map((tab) => (
             <button
               key={tab.id}
-              onClick={() => showSection(tab.id)}
-              className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-widest transition-all ${
+              onClick={() => setActiveTab(tab.id)}
+              className={`flex items-center gap-2 px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${
                 activeTab === tab.id 
-                ? 'bg-white text-[#f3592a] shadow-md border border-slate-200' 
+                ? 'bg-white text-[#f3592a] shadow-sm border border-slate-200' 
                 : 'text-slate-400 hover:text-slate-600'
               }`}
             >
@@ -53,96 +66,99 @@ const App = () => {
         </div>
       </nav>
 
-      <main className="max-w-7xl mx-auto px-10 pt-44 pb-24">
+      <main className="max-w-7xl mx-auto px-10 pt-44 pb-32">
         
         {/* GOVERNANCE SECTION */}
         {activeTab === 'governance' && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
             <div className="text-center mb-20">
-              <h2 className="text-5xl font-black mb-4 tracking-tighter">Multi-Tier Infrastructure</h2>
-              <p className="text-xl text-slate-500 max-w-3xl mx-auto">
-                Built for 10,000+ learners with strict separation between regulatory compliance and global revenue engines.
+              <h2 className="text-5xl font-black mb-4 tracking-tighter">The Mothership Architecture</h2>
+              <p className="text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed">
+                A structured three-tier ecosystem separating regulatory state compliance from global B2B/B2C revenue streams.
               </p>
             </div>
 
             <div className="flex flex-col items-center">
-              {/* Level 1: Command */}
+              {/* Level 1: Global Command */}
               <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-[#f3592a] to-orange-400 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-                <div className="relative bg-slate-900 text-white rounded-2xl p-8 w-96 text-center shadow-2xl">
-                  <span className="text-[10px] font-black text-orange-400 uppercase tracking-[0.3em] block mb-2">Level 1: Global HQ</span>
-                  <h4 className="text-xl font-bold">Anthony Dwyer | Portfolio Board</h4>
-                  <div className="mt-4 flex justify-center gap-2">
-                    <span className="px-3 py-1 bg-white/10 rounded-full text-[9px] font-black uppercase">Financing Hub</span>
-                    <span className="px-3 py-1 bg-white/10 rounded-full text-[9px] font-black uppercase">Strategic Admin</span>
+                <div className="absolute -inset-1 bg-gradient-to-r from-[#f3592a] to-orange-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+                <div className="relative bg-slate-900 text-white rounded-2xl p-10 w-[450px] text-center shadow-2xl border border-white/10">
+                  <span className="text-[10px] font-black text-orange-400 uppercase tracking-[0.4em] block mb-3">Level 1: Central Command</span>
+                  <h4 className="text-2xl font-black tracking-tight">Anthony Dwyer | Portfolio Board</h4>
+                  <div className="mt-6 flex justify-center gap-3">
+                    <span className="px-4 py-1.5 bg-white/10 rounded-full text-[9px] font-black uppercase tracking-widest border border-white/5 italic">Global Financing Hub</span>
+                    <span className="px-4 py-1.5 bg-white/10 rounded-full text-[9px] font-black uppercase tracking-widest border border-white/5 italic">Master Admin</span>
                   </div>
                 </div>
               </div>
 
-              <div className="h-12 w-0.5 bg-slate-200"></div>
+              <div className="h-16 w-0.5 bg-slate-200"></div>
 
-              {/* Level 2: Nodes */}
+              {/* Level 2: Regional/Strategic Nodes */}
               <div className="flex gap-12 relative w-full justify-center">
-                <div className="absolute top-0 left-[15%] right-[15%] h-0.5 bg-slate-100"></div>
+                <div className="absolute top-0 left-[15%] right-[15%] h-0.5 bg-slate-200"></div>
                 
-                {/* State Node 1 */}
+                {/* Node: NH */}
                 <div className="flex flex-col items-center">
-                  <div className="h-12 w-0.5 bg-slate-200"></div>
-                  <div className="bg-white border-2 border-slate-200 rounded-2xl p-6 w-60 text-center shadow-md">
-                    <span className="text-[9px] font-black text-blue-500 uppercase tracking-widest block mb-2">Level 2: State</span>
-                    <h4 className="font-black text-sm uppercase">New Hampshire HQ</h4>
-                    <p className="text-[10px] text-slate-400 mt-2 italic leading-tight">SSN Compliance &<br/>Licensing Audit</p>
+                  <div className="h-16 w-0.5 bg-slate-200"></div>
+                  <div className="bg-white border-2 border-slate-200 rounded-3xl p-8 w-64 text-center shadow-lg transition-transform hover:-translate-y-1">
+                    <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center mx-auto mb-4">
+                      <Shield className="text-blue-500 w-5 h-5" />
+                    </div>
+                    <span className="text-[10px] font-black text-blue-500 uppercase tracking-widest block mb-1">State Sub-Account</span>
+                    <h4 className="font-black text-sm uppercase text-slate-800">New Hampshire HQ</h4>
+                    <p className="text-[9px] text-slate-400 mt-3 font-bold leading-tight uppercase tracking-tighter">SSN Compliance &<br/>Legal Entity Sovereignty</p>
                   </div>
                 </div>
 
-                {/* State Node 2 */}
+                {/* Node: MA */}
                 <div className="flex flex-col items-center">
-                  <div className="h-12 w-0.5 bg-slate-200"></div>
-                  <div className="bg-white border-2 border-slate-200 rounded-2xl p-6 w-60 text-center shadow-md">
-                    <span className="text-[9px] font-black text-blue-500 uppercase tracking-widest block mb-2">Level 2: State</span>
-                    <h4 className="font-black text-sm uppercase">Massachusetts Hub</h4>
-                    <p className="text-[10px] text-slate-400 mt-2 italic leading-tight">Grant Reporting &<br/>Regional Regulatory</p>
+                  <div className="h-16 w-0.5 bg-slate-200"></div>
+                  <div className="bg-white border-2 border-slate-200 rounded-3xl p-8 w-64 text-center shadow-lg transition-transform hover:-translate-y-1">
+                    <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center mx-auto mb-4">
+                      <Shield className="text-blue-500 w-5 h-5" />
+                    </div>
+                    <span className="text-[10px] font-black text-blue-500 uppercase tracking-widest block mb-1">State Sub-Account</span>
+                    <h4 className="font-black text-sm uppercase text-slate-800">Massachusetts Hub</h4>
+                    <p className="text-[9px] text-slate-400 mt-3 font-bold leading-tight uppercase tracking-tighter">State Grant Reporting<br/>& Regional Compliance</p>
                   </div>
                 </div>
 
-                {/* Business Node */}
+                {/* Node: Healthcare Corp (Revenue) */}
                 <div className="flex flex-col items-center">
-                  <div className="h-12 w-0.5 bg-slate-200"></div>
-                  <div className="bg-white border-4 border-slate-900 rounded-2xl p-6 w-72 text-center shadow-xl">
-                    <span className="text-[9px] font-black text-[#f3592a] uppercase tracking-widest block mb-2">Level 2: Revenue</span>
-                    <h4 className="font-black text-md uppercase text-slate-900 leading-tight">Healthcare Enterprise Corp</h4>
-                    <p className="text-[10px] text-slate-400 mt-2 font-bold uppercase tracking-tighter">Strategic Growth Engine</p>
+                  <div className="h-16 w-0.5 bg-slate-200"></div>
+                  <div className="bg-white border-[3px] border-slate-900 rounded-3xl p-8 w-80 text-center shadow-2xl transition-transform hover:-translate-y-1">
+                    <div className="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center mx-auto mb-4">
+                      <Target className="text-[#f3592a] w-6 h-6" />
+                    </div>
+                    <span className="text-[10px] font-black text-[#f3592a] uppercase tracking-widest block mb-1">Growth Engine</span>
+                    <h4 className="font-black text-lg uppercase text-slate-900 leading-tight">Healthcare Enterprise Corp</h4>
+                    <p className="text-[10px] text-slate-400 mt-2 font-bold uppercase tracking-tighter italic">Strategic Revenue Division</p>
                   </div>
                   
-                  <div className="h-12 w-0.5 bg-slate-200"></div>
+                  <div className="h-16 w-0.5 bg-slate-200"></div>
 
-                  {/* Level 3: Divisions */}
+                  {/* Level 3: Market Divisions */}
                   <div className="flex gap-8">
-                    <div className="flex flex-col items-center">
-                      <div className="bg-slate-50 border-2 border-slate-300 rounded-xl p-4 w-48 text-center shadow-sm">
-                        <span className="text-[8px] font-black text-slate-500 uppercase block mb-1">Level 3: B2B</span>
-                        <h4 className="font-black text-[11px] uppercase">Corporate Portals</h4>
-                        <div className="mt-3 p-3 bg-white border border-slate-200 rounded-lg text-left">
-                          <p className="text-[9px] font-bold text-slate-400 mb-2 uppercase">Courses</p>
-                          <ul className="text-[9px] font-black space-y-1.5 text-slate-700 italic">
-                            <li>• Medical Office Mgmt</li>
-                            <li>• Enterprise Compliance</li>
-                          </ul>
-                        </div>
+                    <div className="bg-slate-900 text-white rounded-2xl p-6 w-52 shadow-xl border border-white/5">
+                      <div className="flex items-center gap-2 mb-4 border-b border-white/10 pb-3">
+                        <Users className="w-4 h-4 text-orange-400" />
+                        <h4 className="text-[11px] font-black uppercase tracking-widest">B2B Portals</h4>
                       </div>
+                      <ul className="text-[10px] font-bold space-y-2.5 text-slate-400 italic">
+                        <li className="flex items-center gap-2 tracking-tighter hover:text-white transition-colors cursor-default"><ChevronRight className="w-2 h-2" /> Medical Office Mgmt</li>
+                        <li className="flex items-center gap-2 tracking-tighter hover:text-white transition-colors cursor-default"><ChevronRight className="w-2 h-2" /> Compliance Assets</li>
+                      </ul>
                     </div>
-                    <div className="flex flex-col items-center">
-                      <div className="bg-slate-50 border-2 border-slate-300 rounded-xl p-4 w-48 text-center shadow-sm">
-                        <span className="text-[8px] font-black text-slate-500 uppercase block mb-1">Level 3: B2C</span>
-                        <h4 className="font-black text-[11px] uppercase">Global Academy</h4>
-                        <div className="mt-3 p-3 bg-white border border-slate-200 rounded-lg text-left">
-                          <p className="text-[9px] font-bold text-slate-400 mb-2 uppercase">Courses</p>
-                          <ul className="text-[9px] font-black space-y-1.5 text-slate-700 italic">
-                            <li>• Lab Safety Master</li>
-                            <li>• Medical Billing 101</li>
-                          </ul>
-                        </div>
+                    <div className="bg-slate-900 text-white rounded-2xl p-6 w-52 shadow-xl border border-white/5">
+                      <div className="flex items-center gap-2 mb-4 border-b border-white/10 pb-3">
+                        <Globe className="w-4 h-4 text-orange-400" />
+                        <h4 className="text-[11px] font-black uppercase tracking-widest">B2C Academy</h4>
                       </div>
+                      <ul className="text-[10px] font-bold space-y-2.5 text-slate-400 italic">
+                        <li className="flex items-center gap-2 tracking-tighter hover:text-white transition-colors cursor-default"><ChevronRight className="w-2 h-2" /> Lab Safety Master</li>
+                        <li className="flex items-center gap-2 tracking-tighter hover:text-white transition-colors cursor-default"><ChevronRight className="w-2 h-2" /> Med-Billing 101</li>
+                      </ul>
                     </div>
                   </div>
                 </div>
@@ -151,132 +167,344 @@ const App = () => {
           </div>
         )}
 
-        {/* PRICING SECTION */}
-        {activeTab === 'pricing' && (
+        {/* STOREFRONT SECTION */}
+        {activeTab === 'frontdoor' && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <div className="bg-slate-950 text-white rounded-[4rem] p-16 shadow-2xl overflow-hidden border border-white/5">
-              <div className="text-center mb-16">
-                <h2 className="text-5xl font-black mb-4 tracking-tighter italic">Investment Integrity</h2>
-                <p className="text-slate-400 uppercase tracking-[0.4em] text-[10px] font-bold">Banking-Style Transparency & Scalability</p>
+             <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+                <div className="space-y-8">
+                    <div className="inline-block px-4 py-1.5 bg-orange-50 text-[#f3592a] text-[10px] font-black uppercase tracking-[0.2em] rounded-full">Frictionless Marketplace</div>
+                    <h2 className="text-6xl font-black tracking-tighter leading-[0.9]">The Medical <br/><span className="text-orange-500">Storefront.</span></h2>
+                    <p className="text-xl text-slate-500 leading-relaxed max-w-xl">
+                      Implementing Canvas Catalog to provide a professional, Shopify-style marketplace that financiers demand for 12,000+ potential learners.
+                    </p>
+                    <div className="space-y-6 pt-4">
+                      <div className="flex items-start gap-4 p-6 bg-white border border-slate-200 rounded-3xl shadow-sm group hover:border-[#f3592a] transition-all">
+                        <div className="w-12 h-12 bg-orange-50 rounded-2xl flex items-center justify-center text-orange-600 group-hover:bg-[#f3592a] group-hover:text-white transition-colors">
+                          <CreditCard className="w-6 h-6" />
+                        </div>
+                        <div>
+                          <h4 className="font-black text-sm uppercase tracking-widest text-slate-800">Payment Gateway Configuration</h4>
+                          <p className="text-xs text-slate-400 mt-1 leading-relaxed">Integrated merchant processing for zero-touch B2C enrollment and automated B2B bulk checkout.</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-4 p-6 bg-white border border-slate-200 rounded-3xl shadow-sm group hover:border-[#f3592a] transition-all">
+                        <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                          <Globe className="w-6 h-6" />
+                        </div>
+                        <div>
+                          <h4 className="font-black text-sm uppercase tracking-widest text-slate-800">Single-Link B2B Onboarding</h4>
+                          <p className="text-xs text-slate-400 mt-1 leading-relaxed">Distribute specific enrollment links to Meta portfolio clinics for instant HIPAA-compliant cohort creation.</p>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                
+                {/* Storefront Simulation */}
+                <div className="bg-slate-200 p-1 rounded-[4rem] shadow-inner relative overflow-hidden">
+                  <div className="bg-white rounded-[3.8rem] shadow-2xl p-10 overflow-hidden border border-slate-100">
+                    <div className="flex justify-between items-center mb-10 border-b border-slate-100 pb-6">
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 bg-[#f3592a] rotate-45"></div>
+                        <span className="font-black text-xs uppercase tracking-widest">Medical Academy</span>
+                      </div>
+                      <div className="flex gap-4 items-center">
+                        <Store className="w-4 h-4 text-slate-300" />
+                        <div className="w-8 h-8 bg-slate-100 rounded-full border border-slate-200"></div>
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-8">
+                      <div className="bg-slate-50 border border-slate-100 rounded-[2rem] p-6 hover:shadow-xl transition-all group">
+                        <div className="w-full h-32 bg-slate-200 rounded-2xl mb-5 flex items-center justify-center overflow-hidden">
+                          <Database className="w-10 h-10 text-slate-300 opacity-50 group-hover:scale-110 transition-transform" />
+                        </div>
+                        <span className="text-[8px] font-black text-blue-500 uppercase tracking-widest mb-1 block">Course 01</span>
+                        <h5 className="font-black text-sm uppercase text-slate-800">Medical Billing</h5>
+                        <div className="mt-6 flex justify-between items-center">
+                          <span className="text-lg font-black">$250</span>
+                          <button className="px-5 py-2 bg-slate-900 text-white rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-[#f3592a] transition-colors">Enroll</button>
+                        </div>
+                      </div>
+                      <div className="bg-slate-50 border border-slate-100 rounded-[2rem] p-6 hover:shadow-xl transition-all group">
+                        <div className="w-full h-32 bg-slate-200 rounded-2xl mb-5 flex items-center justify-center overflow-hidden">
+                          <Activity className="w-10 h-10 text-slate-300 opacity-50 group-hover:scale-110 transition-transform" />
+                        </div>
+                        <span className="text-[8px] font-black text-orange-500 uppercase tracking-widest mb-1 block">Course 02</span>
+                        <h5 className="font-black text-sm uppercase text-slate-800">Lab Safety</h5>
+                        <div className="mt-6 flex justify-between items-center">
+                          <span className="text-lg font-black">FREE</span>
+                          <button className="px-5 py-2 bg-slate-900 text-white rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-[#f3592a] transition-colors">Enroll</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+             </div>
+          </div>
+        )}
+
+        {/* AUTOMATION SECTION */}
+        {activeTab === 'automation' && (
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <div className="text-center mb-20">
+              <h2 className="text-5xl font-black mb-4 tracking-tighter">Scalable Integrity</h2>
+              <p className="text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed">
+                How Anthony Dwyer maintains 100% curriculum compliance across 50+ state nodes with a single-click update engine.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              {/* Blueprint Logic */}
+              <div className="p-12 bg-slate-900 text-white rounded-[4rem] shadow-2xl relative overflow-hidden group border-[6px] border-[#f3592a]/30 hover:border-[#f3592a] transition-all">
+                <div className="absolute top-10 right-10 group-hover:rotate-180 transition-transform duration-1000">
+                  <RefreshCcw className="w-16 h-16 text-orange-500 opacity-20" />
+                </div>
+                <h3 className="text-3xl font-black mb-8 leading-tight">Blueprint Logic<br/><span className="text-orange-500">(The Master Engine)</span></h3>
+                
+                <div className="space-y-8 mt-12">
+                  <div className="flex gap-5">
+                    <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center flex-shrink-0 border border-white/10"><RefreshCcw className="w-5 h-5 text-orange-500" /></div>
+                    <div>
+                      <h4 className="text-xs font-black uppercase tracking-widest mb-1 text-white">Continuous Global Sync</h4>
+                      <p className="text-[11px] text-slate-400 font-medium">Updates to medical regulations are pushed from the Mothership to all business nodes instantly.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-5">
+                    <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center flex-shrink-0 border border-white/10"><Lock className="w-5 h-5 text-orange-500" /></div>
+                    <div>
+                      <h4 className="text-xs font-black uppercase tracking-widest mb-1 text-white">Administrative Locking</h4>
+                      <p className="text-[11px] text-slate-400 font-medium">Admins lock content blocks (quizzes/regulatory pages) to prevent local edits while allowing instructor customization in free zones.</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="mt-16 p-5 bg-[#f3592a] rounded-2xl text-center shadow-xl shadow-orange-900/20 cursor-pointer hover:bg-orange-600 transition-colors">
+                  <span className="text-xs font-black uppercase tracking-widest flex items-center justify-center gap-3">
+                    <RefreshCcw className="w-3 h-3 animate-spin" /> Push Update to all 50 States
+                  </span>
+                </div>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
-                {/* Recurring Costs */}
-                <div className="bg-white/5 p-10 rounded-[3rem] border border-white/10 flex flex-col">
-                  <div className="flex justify-between items-start mb-10">
-                    <h4 className="text-xl font-black text-orange-500 uppercase tracking-widest">Platform <span className="text-white/40 block text-xs lowercase italic font-normal mt-1 tracking-normal">Annual Recurring</span></h4>
-                    <span className="px-4 py-1.5 bg-green-500/20 text-green-400 rounded-full text-[9px] font-black uppercase tracking-widest">49% Discount Applied</span>
+              {/* Workflow Table */}
+              <div className="bg-white p-12 rounded-[4rem] border-2 border-slate-100 shadow-sm">
+                <h4 className="text-xl font-black mb-10 text-slate-900 tracking-tight">Change Management Workflow</h4>
+                <div className="overflow-hidden border border-slate-100 rounded-3xl">
+                  <table className="w-full text-[11px]">
+                    <thead className="bg-slate-50 border-b border-slate-100 text-slate-400 font-black uppercase tracking-widest">
+                      <tr>
+                        <th className="px-6 py-4 text-left">Feature</th>
+                        <th className="px-6 py-4 text-left">Blueprint (Master)</th>
+                        <th className="px-6 py-4 text-left text-slate-300">Template (Starter)</th>
+                      </tr>
+                    </thead>
+                    <tbody className="font-bold text-slate-600">
+                      <tr className="border-b border-slate-50">
+                        <td className="px-6 py-5 uppercase text-[10px]">Best For</td>
+                        <td className="px-6 py-5 text-orange-600">Compliance & Integrity</td>
+                        <td className="px-6 py-5 opacity-40">One-off Custom Shells</td>
+                      </tr>
+                      <tr className="border-b border-slate-50">
+                        <td className="px-6 py-5 uppercase text-[10px]">Sync Logic</td>
+                        <td className="px-6 py-5 text-slate-900 font-black italic">Live Bi-Directional</td>
+                        <td className="px-6 py-5 opacity-40">One-time Import</td>
+                      </tr>
+                      <tr className="border-b border-slate-50">
+                        <td className="px-6 py-5 uppercase text-[10px]">Locking</td>
+                        <td className="px-6 py-5">Full Control (Lockable)</td>
+                        <td className="px-6 py-5 opacity-40 text-red-400">None (Open)</td>
+                      </tr>
+                      <tr>
+                        <td className="px-6 py-5 uppercase text-[10px]">Scale Utility</td>
+                        <td className="px-6 py-5 bg-orange-50 text-orange-600">Update 50 states at once</td>
+                        <td className="px-6 py-5 opacity-40">Manual Effort Required</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p className="mt-8 text-[10px] italic text-slate-400 font-medium">As specified for Indiana University & Northwest U.S. scalable enterprise models.</p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* INSIGHTS SECTION */}
+        {activeTab === 'dashboard' && (
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+              <div className="bg-white border-2 border-slate-100 shadow-3xl p-14 rounded-[5rem] relative overflow-hidden">
+                <div className="flex justify-between items-center mb-12">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                    <h4 className="font-black text-xs uppercase tracking-[0.2em] text-slate-400">Intelligent Insights Monitor</h4>
                   </div>
-                  
-                  <div className="space-y-6 flex-grow">
-                    <div className="flex justify-between items-end border-b border-white/10 pb-4">
-                      <div>
-                        <span className="block font-black text-sm uppercase">Canvas Career LMS</span>
-                        <span className="text-[9px] text-slate-500 font-bold uppercase tracking-widest">200 MAU Baseline</span>
-                      </div>
-                      <span className="text-2xl font-black tracking-tighter text-white">$6,002</span>
-                    </div>
-                    <div className="flex justify-between items-end border-b border-white/10 pb-4">
-                      <div>
-                        <span className="block font-black text-sm uppercase">Canvas Catalog</span>
-                        <span className="text-[9px] text-slate-500 font-bold uppercase tracking-widest">2,000 Enrollments</span>
-                      </div>
-                      <span className="text-2xl font-black tracking-tighter text-white">$5,000</span>
-                    </div>
+                  <span className="px-4 py-1 bg-blue-50 text-blue-600 rounded-full text-[9px] font-black uppercase tracking-widest border border-blue-100">IgniteAI: ON</span>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-10 mb-14">
+                  <div className="bg-slate-50 border-l-[6px] border-orange-500 p-8 rounded-3xl">
+                    <span className="block text-[10px] font-black uppercase text-slate-400 mb-2 tracking-widest leading-none">Avg Skills Earned</span>
+                    <span className="text-6xl font-black tracking-tighter text-slate-900">15</span>
+                    <span className="block text-[10px] text-green-500 font-black mt-3">↑ 10% from baseline</span>
                   </div>
-                  
-                  <div className="mt-12 pt-6 border-t border-white/10 flex justify-between items-end">
-                    <span className="text-[10px] font-black uppercase text-slate-500 tracking-[0.2em]">Annual Subscription</span>
-                    <h5 className="text-5xl font-black text-white">$11,002</h5>
+                  <div className="bg-slate-50 border-l-[6px] border-blue-500 p-8 rounded-3xl">
+                    <span className="block text-[10px] font-black uppercase text-slate-400 mb-2 tracking-widest leading-none">Completion Rate</span>
+                    <span className="text-6xl font-black tracking-tighter text-slate-900">75%</span>
+                    <span className="block text-[10px] text-blue-400 font-black mt-3 italic tracking-tight font-medium">High Health State</span>
                   </div>
                 </div>
 
-                {/* Implementation One-Time */}
-                <div className="bg-white/5 p-10 rounded-[3rem] border border-white/10">
-                  <h4 className="text-xl font-black text-slate-400 uppercase tracking-widest mb-10">Professional Services <span className="text-white/40 block text-xs lowercase italic font-normal mt-1 tracking-normal">One-Time Investment</span></h4>
+                <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-xl relative group">
+                  <div className="absolute -top-3 right-8 bg-orange-500 px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest">Governance Alert</div>
+                  <div className="flex items-start gap-4">
+                    <Zap className="w-5 h-5 text-orange-400 mt-1" />
+                    <div>
+                      <p className="text-[11px] leading-relaxed text-slate-300 font-medium italic">
+                        "16 Learners haven't started medical module within 24 hours of enrollment. <span className="text-white font-black underline">Automated SMS nudge sent</span> to cohort lead via Meta clinic portal."
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="space-y-8">
+                <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-600 text-[10px] font-black uppercase tracking-[0.2em] rounded-full italic">Banking-Style Reporting</div>
+                <h2 className="text-6xl font-black tracking-tighter leading-[0.9]">Proof of <br/><span className="text-blue-500">Business Health.</span></h2>
+                <p className="text-xl text-slate-500 leading-relaxed max-w-xl">
+                  Financiers demand real-time visibility. We utilize **Canvas Intelligent Insights** to provide the attainment forecasting required to validate revenue trajectory.
+                </p>
+                <ul className="space-y-4 pt-6">
+                  <li className="flex items-center gap-4 text-slate-400 font-bold uppercase text-[10px] tracking-widest"><CheckCircle2 className="w-4 h-4 text-green-500" /> Direct CSV/API Export for Board Meetings</li>
+                  <li className="flex items-center gap-4 text-slate-400 font-bold uppercase text-[10px] tracking-widest"><CheckCircle2 className="w-4 h-4 text-green-500" /> Skill-Attainment Correlated to Revenue</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* INVESTMENT SECTION */}
+        {activeTab === 'pricing' && (
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <div className="bg-slate-950 text-white rounded-[5rem] p-20 shadow-4xl border border-white/5 relative overflow-hidden group">
+              <div className="absolute top-0 right-0 p-12 opacity-5 group-hover:opacity-10 transition-opacity">
+                <DollarSign className="w-64 h-64" />
+              </div>
+              
+              <div className="text-center mb-20 relative">
+                <div className="inline-block px-4 py-1 bg-green-500/20 text-green-400 text-[10px] font-black uppercase tracking-[0.3em] rounded-full mb-6">Negotiated Strategic Baseline</div>
+                <h2 className="text-6xl font-black mb-4 tracking-tighter">Investor Roadmap</h2>
+                <p className="text-slate-500 uppercase tracking-[0.5em] text-[10px] font-black italic">Scaling Medical Certification Excellence</p>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 relative mb-24">
+                {/* Column 1: Platform (Recurring) */}
+                <div className="bg-white/5 p-12 rounded-[4rem] border border-white/10 flex flex-col hover:border-[#f3592a]/50 transition-all">
+                  <div className="flex justify-between items-start mb-12">
+                    <h4 className="text-2xl font-black text-orange-500 tracking-widest uppercase">Platform<br/><span className="text-white opacity-30 text-xs lowercase italic font-normal tracking-normal">Annual Recurring Subscription</span></h4>
+                    <span className="px-5 py-2 bg-orange-500 text-white rounded-full text-[9px] font-black uppercase tracking-widest animate-pulse shadow-lg shadow-orange-500/20 italic">49% Strategic Discount</span>
+                  </div>
                   
-                  <div className="space-y-4">
+                  <div className="space-y-8 flex-grow">
+                    <div className="flex justify-between items-end border-b border-white/10 pb-6">
+                      <div className="space-y-1">
+                        <span className="block font-black text-sm uppercase tracking-wider text-white">Canvas Career LMS</span>
+                        <p className="text-[10px] text-slate-500 uppercase font-black tracking-widest leading-none">Subscription (200 MAU Baseline)</p>
+                      </div>
+                      <span className="text-4xl font-black tracking-tighter text-white font-mono">$6,002</span>
+                    </div>
+                    <div className="flex justify-between items-end border-b border-white/10 pb-6">
+                      <div className="space-y-1">
+                        <span className="block font-black text-sm uppercase tracking-wider text-white">Canvas Catalog</span>
+                        <p className="text-[10px] text-slate-500 uppercase font-black tracking-widest leading-none">2,000 Annual Enrollments</p>
+                      </div>
+                      <span className="text-4xl font-black tracking-tighter text-white font-mono">$5,000</span>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-14 pt-8 border-t border-white/20 flex justify-between items-end">
+                    <span className="text-[11px] font-black uppercase text-slate-500 tracking-[0.3em]">Total Recurring</span>
+                    <h5 className="text-6xl font-black text-white tracking-tighter font-mono">$11,002</h5>
+                  </div>
+                </div>
+
+                {/* Column 2: Implementation (One-Time) */}
+                <div className="bg-white/5 p-12 rounded-[4rem] border border-white/10 hover:border-slate-700 transition-all">
+                  <h4 className="text-2xl font-black text-slate-300 tracking-widest uppercase mb-12">Professional Services<br/><span className="text-white opacity-30 text-xs lowercase italic font-normal tracking-normal">One-Time Project Investment</span></h4>
+                  
+                  <div className="grid grid-cols-1 gap-4">
                     {[
-                      { label: "Instance Configuration", price: "$590" },
-                      { label: "Standard Career Impl.", price: "$8,750" },
-                      { label: "Payment Gateway Config.", price: "$1,640", highlight: true },
-                      { label: "Catalog Implementation", price: "$4,900" },
-                      { label: "Virtual & On-Demand Training", price: "$1,450" },
-                      { label: "Strategic Consulting (HQ)", price: "$2,000" },
+                      { label: "LMS Instance Configuration", price: "$590" },
+                      { label: "Standard Career Implementation", price: "$8,750" },
+                      { label: "Payment Gateway Config.", price: "$1,640", gold: true },
+                      { label: "Catalog Build & Configuration", price: "$4,900" },
+                      { label: "Virtual Training (On-Demand)", price: "$1,450" },
+                      { label: "Strategic Consultation (HQ)", price: "$2,000" },
                     ].map((item, idx) => (
-                      <div key={idx} className="flex justify-between items-center text-xs border-b border-white/5 pb-3">
-                        <span className={`font-bold ${item.highlight ? 'text-orange-400' : 'text-slate-300'}`}>{item.label}</span>
-                        <span className={`font-black ${item.highlight ? 'text-orange-400' : ''}`}>{item.price}</span>
+                      <div key={idx} className="flex justify-between items-center py-2.5 border-b border-white/5 group">
+                        <span className={`text-[10px] uppercase font-black tracking-widest ${item.gold ? 'text-orange-400' : 'text-slate-400 group-hover:text-slate-300'}`}>{item.label}</span>
+                        <span className={`text-sm font-black font-mono ${item.gold ? 'text-orange-400' : 'text-slate-300'}`}>{item.price}</span>
                       </div>
                     ))}
                   </div>
 
-                  <div className="mt-8 pt-6 border-t border-white/10 flex justify-between items-end">
-                    <span className="text-[10px] font-black uppercase text-slate-500 tracking-[0.2em]">Implementation Total</span>
-                    <h5 className="text-5xl font-black text-white">$19,330</h5>
+                  <div className="mt-10 pt-8 border-t border-white/20 flex justify-between items-end">
+                    <span className="text-[11px] font-black uppercase text-slate-500 tracking-[0.3em]">Total Service</span>
+                    <h5 className="text-6xl font-black text-white tracking-tighter font-mono">$19,330</h5>
                   </div>
                 </div>
               </div>
 
-              {/* Total Callout */}
-              <div className="mt-12 flex flex-col md:flex-row justify-between items-end bg-gradient-to-br from-white/5 to-transparent p-12 rounded-[3.5rem] border border-white/10">
-                <div className="mb-6 md:mb-0">
-                  <span className="text-[10px] font-black uppercase text-slate-500 tracking-[0.5em] block mb-4">Total Year 1 Strategic Commitment</span>
-                  <h4 className="text-8xl font-black tracking-tighter text-white leading-none">$30,332</h4>
+              {/* Grand Total Bar */}
+              <div className="mt-12 flex flex-col md:flex-row justify-between items-end bg-gradient-to-br from-white/10 to-transparent p-16 rounded-[4rem] border border-white/10 shadow-3xl">
+                <div>
+                  <span className="text-[11px] font-black uppercase text-slate-500 tracking-[0.6em] block mb-6">Total Strategic Capital (Year 1)</span>
+                  <h4 className="text-[10rem] font-black tracking-[ -0.05em] text-white leading-[0.7] font-mono">$30,332</h4>
                 </div>
-                <div className="text-right">
-                  <div className="flex items-center justify-end gap-3 text-green-400 mb-2">
-                    <Shield className="w-4 h-4" />
-                    <span className="text-sm font-black uppercase tracking-widest italic">Investor-Ready Proposal</span>
+                <div className="text-right pb-4">
+                  <div className="flex items-center justify-end gap-3 text-green-400 mb-6 group cursor-help">
+                    <Shield className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                    <span className="text-sm font-black uppercase tracking-[0.2em] italic">Investor-Ready Build</span>
                   </div>
-                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest leading-loose">
-                    HIPAA & SSN Compliant Infrastructure &bull; 1-Year Rolling Term
+                  <p className="text-[11px] text-slate-500 font-bold uppercase tracking-[0.2em] leading-loose max-w-xs ml-auto italic">
+                    HIPAA / SSN Compliant Infrastructure &bull; 1-Year Rolling Term &bull; 99.9% SLA Guarantee
                   </p>
                 </div>
               </div>
-            </div>
-
-            {/* Next Steps Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-              {[
-                { step: "Approval", icon: Target, text: "Anthony Dwyer reviews banking-style cost breakdown and line items for financial backers." },
-                { step: "Dev Sprint", icon: Zap, text: "120-day content build with contractors using IgniteAI for rapid curriculum mapping." },
-                { step: "Governance", icon: Settings, text: "Finalizing LLC incorporation and state-specific SSN security & payment protocols." },
-              ].map((item, idx) => (
-                <div key={idx} className="bg-slate-50 p-10 rounded-[3rem] border border-slate-200">
-                  <div className="w-12 h-12 bg-white rounded-2xl shadow-sm border border-slate-100 flex items-center justify-center text-[#f3592a] mb-6">
-                    <item.icon className="w-6 h-6" />
+              
+              {/* Next Steps for GitHub/Repo Clarity */}
+              <div className="mt-32 grid grid-cols-1 md:grid-cols-3 gap-10 relative">
+                <div className="absolute -top-12 left-1/2 -translate-x-1/2 text-[10px] font-black uppercase tracking-[0.5em] text-slate-600 italic underline decoration-orange-500 decoration-2 underline-offset-8">Implementation Roadmap</div>
+                {[
+                  { step: "Strategic Approval", icon: Target, text: "Anthony Dwyer presents banking-style line-item breakdown to financiers for final capital release." },
+                  { step: "Dev Sprint (120D)", icon: Zap, text: "Content team build using IgniteAI to map 10 courses to industry medical competency taxonomies." },
+                  { step: "Governance Launch", icon: Settings, text: "Final LLC incorporation and multi-state secure payment protocols activated across the node cluster." },
+                ].map((item, idx) => (
+                  <div key={idx} className="bg-white/5 p-10 rounded-[3rem] border border-white/10 hover:bg-white/10 transition-all group">
+                    <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-[#f3592a] mb-8 group-hover:scale-110 transition-transform shadow-xl">
+                      <item.icon className="w-7 h-7" />
+                    </div>
+                    <h5 className="text-md font-black uppercase tracking-widest mb-4 text-white">Step 0{idx+1}: {item.step}</h5>
+                    <p className="text-xs text-slate-500 leading-relaxed font-medium group-hover:text-slate-300 transition-colors tracking-tight">{item.text}</p>
                   </div>
-                  <h5 className="text-lg font-black uppercase tracking-widest mb-3">{item.step}</h5>
-                  <p className="text-sm text-slate-500 leading-relaxed font-medium">{item.text}</p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-        )}
-
-        {/* Placeholder for other sections */}
-        {activeTab !== 'governance' && activeTab !== 'pricing' && (
-          <div className="flex flex-col items-center justify-center py-40 text-slate-300">
-            <Database className="w-20 h-20 mb-6 opacity-20" />
-            <p className="text-xl font-black uppercase tracking-[0.3em]">Full Demo Simulation Loaded</p>
-            <p className="mt-2 text-sm">Every tab reflects the Healthcare Certification Fortress specifications.</p>
           </div>
         )}
 
       </main>
 
-      <footer className="py-24 border-t border-slate-100 bg-white">
+      {/* Corporate Footer */}
+      <footer className="py-24 border-t border-slate-200 bg-white">
         <div className="max-w-7xl mx-auto px-10 text-center">
-          <div className="flex items-center justify-center gap-4 mb-10">
-            <div className="w-6 h-6 bg-[#f3592a] rotate-45"></div>
-            <span className="text-2xl font-black tracking-widest text-slate-900 uppercase">Dwyer x Instructure Partnership</span>
+          <div className="flex items-center justify-center gap-5 mb-14">
+            <div className="w-8 h-8 bg-slate-900 rotate-45 flex items-center justify-center shadow-lg"><Shield className="text-white w-4 h-4 -rotate-45" /></div>
+            <span className="text-3xl font-black tracking-widest text-slate-900 uppercase italic">Dwyer x Instructure</span>
           </div>
-          <div className="flex flex-wrap justify-center gap-12 text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">
-            <span>12,000+ Learner Capacity</span>
-            <span>Scalable B2B/B2C Architecture</span>
-            <span>99.9% Uptime SLA</span>
-            <span>2026 Strategy</span>
+          <div className="flex flex-wrap justify-center gap-16 text-[10px] font-black text-slate-400 uppercase tracking-[0.5em]">
+            <span className="hover:text-slate-800 transition-colors cursor-default flex items-center gap-2 underline decoration-orange-500 decoration-2 underline-offset-4">12,000+ Learner Capacity</span>
+            <span className="hover:text-slate-800 transition-colors cursor-default">Scalable B2B Node Cluster</span>
+            <span className="hover:text-slate-800 transition-colors cursor-default">HIPAA / SSN Compliant</span>
+            <span className="hover:text-slate-800 transition-colors cursor-default">2026 Strategy</span>
           </div>
         </div>
       </footer>
